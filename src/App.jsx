@@ -36,6 +36,36 @@ function Employees() {
     )
 }
 
+function LearningSummary() {
+
+    const learnedTopics = [
+        "useState",
+        "useEffect",
+        "API Fetching",
+        "Props",
+        "Component Splitting",
+        "Array.map()",
+        "Array.filter()",
+        "Search Functionality",
+        "Flexbox Layout",
+        "Dynamic Rendering"
+    ]
+
+    return (
+        <div className="learning-section">
+            <h2>What I Learned</h2>
+
+            <ul>
+                {
+                    learnedTopics.map((topic, index) => (
+                        <li key={index}>{topic}</li>
+                    ))
+                }
+            </ul>
+        </div>
+    )
+}
+
 function RenderEmployess({ emps }) {
     return (
         <table>
@@ -69,11 +99,16 @@ function RenderEmployess({ emps }) {
 
 function App() {
     return (
-        <div className="app-container">
-            <h1>Saransh React App</h1>
-            <p>I am learning React</p>
-            <div className="component-box">
-                <Employees />
+        <div>
+            <div className="app-container">
+                <h1>Saransh React App</h1>
+                <p>I am learning React</p>
+                <div className="component-box">
+                    <Employees />
+                </div>
+            </div>
+            <div className="app-container">
+                <LearningSummary/>
             </div>
         </div>
     )

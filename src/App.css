@@ -41,3 +41,17 @@ th, td {
     flex: 1;
     overflow-x: auto;
 }
+
+.learning-section {
+    margin-top: 30px;
+    border-top: 2px solid gray;
+    padding: 20px;
+}
+
+.learning-section ul {
+    margin-top: 10px;
+}
+
+.learning-section li {
+    margin-bottom: 8px;
+}
