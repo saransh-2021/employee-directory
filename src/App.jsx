@@ -6,12 +6,14 @@ function Employees() {
     const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
-        fetch("https://jsonplaceholder.typicode.com/users")
-            .then((response) => response.json())
-            .then((employeeData) => {
-                setEmps(employeeData)
-                console.log(employeeData);
-            })
+        setTimeout(() => {
+            fetch("https://jsonplaceholder.typicode.com/users")
+                .then((response) => response.json())
+                .then((employeeData) => {
+                    setEmps(employeeData)
+                    console.log(employeeData);
+                })
+        }, 1500)
     }, [])
 
     const filteredList = emps.filter((emp) =>
@@ -23,9 +25,9 @@ function Employees() {
     return (
         <div className="content-wrapper">
             <div className="sidebar">
-            <input type="text"
-                placeholder="Search employees..."
-                onChange={(event) => setSearchTerm(event.target.value)} />
+                <input type="text"
+                    placeholder="Search employees..."
+                    onChange={(event) => setSearchTerm(event.target.value)} />
                 <p>{searchTerm}</p>
             </div>
             <div className="component-box table-container">
@@ -48,7 +50,8 @@ function LearningSummary() {
         "Array.filter()",
         "Search Functionality",
         "Flexbox Layout",
-        "Dynamic Rendering"
+        "Dynamic Rendering",
+        "Loading Animation"
     ]
 
     return (
@@ -67,34 +70,38 @@ function LearningSummary() {
 }
 
 function RenderEmployess({ emps }) {
-    return (
-        <table>
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>USERNAME</th>
-                    <th>EMAIL</th>
-                    <th>PHONE</th>
-                    <th>WEBSITE</th>
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    emps.map((emp, index) => (
-                        <tr key={index}>
-                            <td>{emp.id}</td>
-                            <td>{emp.name}</td>
-                            <td>{emp.username}</td>
-                            <td>{emp.email}</td>
-                            <td>{emp.phone}</td>
-                            <td>{emp.website}</td>
-                        </tr>
-                    ))
-                }
-            </tbody>
-        </table>
-    )
+    if (emps.length == 0)
+        return <h2>Loading employees...</h2>
+    else {
+        return (
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>USERNAME</th>
+                        <th>EMAIL</th>
+                        <th>PHONE</th>
+                        <th>WEBSITE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        emps.map((emp, index) => (
+                            <tr key={index}>
+                                <td>{emp.id}</td>
+                                <td>{emp.name}</td>
+                                <td>{emp.username}</td>
+                                <td>{emp.email}</td>
+                                <td>{emp.phone}</td>
+                                <td>{emp.website}</td>
+                            </tr>
+                        ))
+                    }
+                </tbody>
+            </table>
+        )
+    }
 }
 
 function App() {
@@ -108,7 +115,7 @@ function App() {
                 </div>
             </div>
             <div className="app-container">
-                <LearningSummary/>
+                <LearningSummary />
             </div>
         </div>
     )
